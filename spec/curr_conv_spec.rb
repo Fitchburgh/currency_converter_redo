@@ -9,3 +9,12 @@ describe Currency  do
     expect(currency).to be_a(Currency)
   end
 end
+
+describe Currency do
+  it "one currency obj = another of exact arguments" do
+    a = Currency.new('$5')
+    b = Currency.new("$", 5)
+    expect(a == b)
+
+  end
+end
