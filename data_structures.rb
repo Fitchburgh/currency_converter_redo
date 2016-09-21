@@ -15,3 +15,9 @@ conversion_rates = {
     'JPN' => 1
   }
 }
+
+code_symbols = {
+  'EUR' => '€',
+  'USD' => '$',
+  'JPY' => '¥‎'
+}
