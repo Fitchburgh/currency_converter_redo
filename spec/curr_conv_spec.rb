@@ -1,10 +1,11 @@
-require "../currency"
-require "../currency_converter"
-require "../run_main"
-require "../data_structures"
+require_relative "../currency"
+require_relative "../currency_converter"
+require_relative "../run_main"
+require_relative "../data_structures"
 
-describe "stuff"  do
-  it "does stuff" do
-    false
+describe Currency  do
+  it "create a new currency obj in currency class" do
+    currency = Currency.new
+    expect(currency).to be_a(Currency)
   end
 end
