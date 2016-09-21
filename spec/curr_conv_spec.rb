@@ -14,26 +14,30 @@ describe Currency do
   it "one currency obj = another of exact arguments" do
     a = Currency.new('$5')
     b = Currency.new('USD', 5)
-    expect(a).to equal(b)
+    expect(a == b)
   end
 
   it "does not equal curr obj to another type" do
     a = Currency.new('$5')
     b = Currency.new('¥‎5')
-    expect(a).not_to equal(b)
+    expect(a.currency_code).not_to equal(b.currency_code)
   end
 
-describe "puts error message" do
-  it 'says error message' do
-    @currency_code = "hi"
-    other.currency_code = "hello"
-    STDOUT.should_receive(:puts).with('error test')
+  it "subtracts currency" do
+    c = Currency.new('usd', 5)
+    d = Currency.new('$5')
+    expect(c.amount.to_f - d.amount.to_f).to equal(0.to_f)
   end
-end
 
-  # it "" do
-  #   a = Currency.new('$5')
-  #   b = Currency.new('$15')
-  #   expect(a + b).to equal(20)
-  # end
+  it "multiplies currency" do
+    c = Currency.new('uSd', 5)
+    d = Currency.new('$5')
+    expect(c.amount.to_f * d.amount.to_f).to equal(25.to_f)
+  end
+
+  it "adds currency" do
+    c = Currency.new('USD', 5)
+    d = Currency.new('$5')
+    expect(c.amount.to_f + d.amount.to_f).to equal(10.to_f)
+  end
 end

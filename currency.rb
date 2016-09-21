@@ -1,5 +1,10 @@
-
+class CannotSubtractThoseCurrencies < StandardError
+end
+class CannotMultiplyThoseCurrencies < StandardError
+end
 class CannotAddThoseCurrencies < StandardError
+end
+class CannotConvertThatCurrency < StandardError
 end
 # Class to create new currency options to prepare to be converted
 class Currency
@@ -11,16 +16,21 @@ class Currency
       'USD' => '$',
       'JPY' => '¥‎'
     }
-    tomato = @currency_code.upcase
-    puts "#{tomato}"
     if @amount == nil
       @amount = @currency_code[1..-1]
       @currency_code = @currency_code[0]
     end
-    puts "#{@currency_code} #{@amount}"
-    if @code_symbols.include? tomato
-      @code_symbol = @code_symbols[tomato]
-      puts "Am I here? #{@code_symbol}"
+
+    @currency_code = @currency_code.upcase
+
+    if @code_symbols.include? @currency_code
+      @currency_code = @code_symbols[@currency_code]
+    elsif !@code_symbols.include? @currency_code
+      begin
+      raise CannotConvertThatCurrency
+      rescue
+      end
+      puts "convert error"
     end
   end
   def ==(other)
@@ -30,13 +40,37 @@ class Currency
   # this function is going to add two amounts together of the same currency_code
   def +(other)
     if @currency_code == other.currency_code && @currency_code != nil
-      true
+      @amount += other.amount.to_f
     else
       begin
       raise CannotAddThoseCurrencies
       rescue
       end
-      puts 'error test'
+      puts 'Addition error test'
+    end
+  end
+
+  def -(other)
+    if @currency_code == other.currency_code && @currency_code != nil
+      @amount -= other.amount.to_f
+    else
+      begin
+      raise CannotSubtractThoseCurrencies
+      rescue
+      end
+      puts 'Subtraction error test'
+    end
+  end
+
+  def *(other)
+    if @currency_code == other.currency_code && @currency_code != nil
+      @amount *= other.to_f
+    else
+      begin
+      raise CannotMultiplyThoseCurrencies
+      rescue
+      end
+      puts 'Conversion error test'
     end
   end
 end
