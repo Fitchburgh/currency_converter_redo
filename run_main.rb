@@ -4,24 +4,6 @@ require_relative 'data_structures'
 require_relative 'global_methods'
 
 def main
-  def code_convert(current, code_symbols)
-    current = current.upcase
-    code_symbols = {
-      'EUR' => '€',
-      'USD' => '$',
-      'JPY' => '¥'
-    }
-    if code_symbols.include? current
-      current = code_symbols[current]
-    elsif !code_symbols.include? current
-      begin
-      raise CannotConvertThatCurrency
-      rescue
-      end
-      puts "convert error"
-    end
-  end
-
   code_symbols = {
     'EUR' => '€',
     'USD' => '$',
@@ -58,7 +40,7 @@ def main
   puts "What currency would you like to convert to: "
   desired_code = gets.chomp
 
-  final_desired_code = desired_code.code_convert(desired_code, code_symbols)
+  final_desired_code = code_convert(desired_code)
   puts "Reminder, you are converting from: #{what_to_convert.currency_code} to: #{final_desired_code} desired code"
   final_amount = converter_object.conversion(what_to_convert.currency_code, final_desired_code, user_amount)
 
