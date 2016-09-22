@@ -41,3 +41,15 @@ describe Currency do
     expect(c.amount.to_f + d.amount.to_f).to equal(10.to_f)
   end
 end
+
+describe CurrencyConverter do
+  it "Needs to create an object in that class" do
+    g = CurrencyConverter.new
+    expect(g).to be_a(CurrencyConverter)
+  end
+
+  it "needs to convert 5 USD to x Yen" do
+    q = Currency.new('$5')
+    expect(q.conversion).to equal(Currency.new('¥‎', 509.09))
+  end
+end
