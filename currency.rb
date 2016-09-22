@@ -12,9 +12,9 @@ class Currency
   def initialize(*args)
     @currency_code, @amount = *args
     @code_symbols = {
-      '€' => 'EUR',
-      '$' => 'USD',
-      '¥' => 'JPN'
+      'EUR' => '€',
+      'USD' => '$',
+      'JPY' => '¥'
     }
     @currency_code = @currency_code.upcase
     if @code_symbols.values.include?(@currency_code)

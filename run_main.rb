@@ -53,7 +53,8 @@ def main
   user_amount = gets.chomp.to_f
 
   what_to_convert = Currency.new(user_code, user_amount)
-  what_to_convert
+  what_to_convert #I don't understand why this isn't printing the user_code or amount.
+  what_to_convert.currency_code
   converter_object = CurrencyConverter.new
 
 
