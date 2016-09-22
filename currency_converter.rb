@@ -1,5 +1,6 @@
 # hi mom
 require_relative 'currency'
+require 'pry'
 class CurrencyConverter
   def initialize
     @conversion_rates = {
@@ -20,13 +21,11 @@ class CurrencyConverter
       }
     }
   end
-  def conversion(current_code, desired_code)
-    #need to take $ 5 and make it 509.09 yen.
+  def conversion(current_code, desired_code, amount)
     if @conversion_rates.has_key?(current_code)
       conversion_rate = @conversion_rates[current_code][desired_code]
-      new_amount = currency_code.amount * conversion_rate#is equal to a value
+      new_amount = amount * conversion_rate
       return new_amount
     end
   end
-  # Need to make the
 end
