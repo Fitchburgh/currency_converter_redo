@@ -1,11 +1,15 @@
 class CannotSubtractThoseCurrencies < StandardError
 end
+
 class CannotMultiplyThoseCurrencies < StandardError
 end
+
 class CannotAddThoseCurrencies < StandardError
 end
+
 class CannotConvertThatCurrency < StandardError
 end
+
 # Class to create new currency options to prepare to be converted
 class Currency
   attr_accessor :currency_code, :amount
@@ -28,11 +32,8 @@ class Currency
     if @code_symbols.include? @currency_code
       @currency_code = @code_symbols[@currency_code]
     elsif !@code_symbols.include? @currency_code
-      begin
-      raise CannotConvertThatCurrency
-      rescue
-      end
       puts 'convert error'
+      raise CannotConvertThatCurrency
     end
   end
 
@@ -45,11 +46,8 @@ class Currency
     if @currency_code == other.currency_code && !@currency_code.nil
       @amount += other.amount.to_f
     else
-      begin
-      raise CannotAddThoseCurrencies
-      rescue
-      end
       puts 'Addition error test'
+      raise CannotAddThoseCurrencies
     end
   end
 
@@ -57,11 +55,8 @@ class Currency
     if @currency_code == other.currency_code && !@currency_code.nil
       @amount -= other.amount.to_f
     else
-      begin
-      raise CannotSubtractThoseCurrencies
-      rescue
-      end
       puts 'Subtraction error test'
+      raise CannotSubtractThoseCurrencies
     end
   end
 
@@ -69,11 +64,8 @@ class Currency
     if @currency_code == other.currency_code && !@currency_code.nil
       @amount *= other.to_f
     else
-      begin
-      raise CannotMultiplyThoseCurrencies
-      rescue
-      end
       puts 'Conversion error test'
+      raise CannotMultiplyThoseCurrencies
     end
   end
 end
